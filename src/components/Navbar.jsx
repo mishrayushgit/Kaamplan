@@ -2,6 +2,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
+    <div className='sticky top-0'>
     <nav className='flex bg-cyan-800 justify-between text-white py-2'>
       <div>
         <div className='logo'>
@@ -13,6 +14,7 @@ const Navbar = () => {
         <li className='cursor-pointer hover:font-bold transition-all'>Your Kaams</li>
       </ul>
     </nav>
+    </div>
   )
 }
 

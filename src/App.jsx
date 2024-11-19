@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import { v4 as uuidv4 } from 'uuid';
+import { AiOutlineEdit } from "react-icons/ai";
+import { MdDelete } from "react-icons/md";
 function App() {
   const [kaam, setKaam] = useState("")
   const [kaams, setKaams] = useState([])
@@ -66,7 +68,7 @@ function App() {
   return (
     <>
     <Navbar/>
-      <div className="container bg-cyan-100 my-5 mx-auto max-w-screen-lg rounded-xl p-4 min-h-[80vh]">
+      <div className="container bg-cyan-100 my-5 mx-auto max-w-screen-sm rounded-xl p-4 min-h-[80vh]">
         <h1 className='font-bold text-3xl text-cyan-900 text-center'>Kaamplan - Plan your kaam</h1>
           <div className="addKaam my-4 flex gap-5 justify-center">
             <h2 className='text-lg font-medium text-cyan-900' >Add Kaam</h2>
@@ -75,7 +77,7 @@ function App() {
           </div>
         
         <input type="checkbox" onChange={toggleFinished} checked={showFinished} className=''/> show finished
-        <h2 className='text-lg font-bold text-cyan-900'>Your Kaams</h2> 
+        <h2 className='text-lg font-bold text-cyan-900 my-4'>Your Kaams</h2> 
         <div className="kaams">
         {kaams.length === 0 && <div className='text-cyan-900'>No kaam to do</div>}
         {kaams.map(item =>{ 
@@ -83,16 +85,19 @@ function App() {
           return (showFinished || !item.isCompleted ) && <div key={item.id} className="kaam flex justify-between my-3 max-w-md">
             <div className='flex gap-5'>
             <input type="checkbox" onChange={handleCheckbox} checked={item.isCompleted} name={item.id} id="" />
-            <div className={`${item.isCompleted ? "line-through" : ""} max-w-md break-words`}>{item.kaam}</div>
+            <div className={`${item.isCompleted ? "line-through" : ""} md:max-w-xs break-words max-w-36`}>{item.kaam}</div>
             </div>
             <div className="buttons flex h-full">
-              <button onClick={(e)=>handleEdit(e,item.id)} className='mx-1 bg-cyan-500 hover:bg-cyan-800 text-white p-2 py-1 text-sm rounded-md font-bold'>Edit</button>
-              <button onClick={(e) => {handleDelete(e,item.id)}} className='mx-1 bg-cyan-500 hover:bg-cyan-800 text-white p-2 py-1 text-sm rounded-md font-bold'>Delete</button>
+              <button onClick={(e)=>handleEdit(e,item.id)} className='mx-1 bg-cyan-500 hover:bg-cyan-800 text-white p-2 py-1 text-sm rounded-md font-bold'><AiOutlineEdit />
+              </button>
+              <button onClick={(e) => {handleDelete(e,item.id)}} className='mx-1 bg-cyan-500 hover:bg-cyan-800 text-white p-2 py-1 text-sm rounded-md font-bold'><MdDelete />
+              </button>
             </div>
           </div>
 
             })}
         </div>
+
         </div>
 
     </>
